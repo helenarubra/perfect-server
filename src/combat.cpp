@@ -1,6 +1,6 @@
 /**
  * The Forgotten Server - a free and open-source MMORPG server emulator
- * Copyright (C) 2019  Mark Samman <mark.samman@gmail.com>
+ * Copyright (C) 2021  Mark Samman <mark.samman@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,15 +25,11 @@
 #include "weapons.h"
 #include "configmanager.h"
 #include "events.h"
-#include "monster.h"
-#include "iobestiary.h"
-#include "monsters.h"
 
 extern Game g_game;
 extern Weapons* g_weapons;
 extern ConfigManager g_config;
 extern Events* g_events;
-extern Monsters g_monsters;
 
 CombatDamage Combat::getCombatDamage(Creature* creature, Creature* target) const
 {
@@ -534,32 +530,6 @@ void Combat::CombatConditionFunc(Creature* caster, Creature* target, const Comba
 	}
 
 	for (const auto& condition : params.conditionList) {
-		//Cleanse charm rune (target as player)
-		Player* player = target->getPlayer();
-		if (player) {
-			if (player->isImmuneCleanse(condition->getType())) {
-				player->sendCancelMessage("You are still immune against this spell.");
-				return;
-			} else if (caster->getMonster()) {
-				uint16_t playerCharmRaceid = player->parseRacebyCharm(CHARM_CLEANSE, false, 0);
-				if (playerCharmRaceid != 0) {
-					MonsterType* mType = g_monsters.getMonsterType(caster->getName());
-					if (mType && playerCharmRaceid == mType->info.raceid) {
-						IOBestiary g_bestiary;
-						Charm* charm = g_bestiary.getBestiaryCharm(CHARM_CLEANSE);
-						if (charm && (charm->chance > normal_random(0, 100))) {
-							if (player->hasCondition(condition->getType())) {
-								player->removeCondition(condition->getType());
-							}
-							player->setImmuneCleanse(condition->getType());
-							player->sendCancelMessage(charm->cancelMsg);
-							return;
-						}
-					}
-				}
-			}
-		}
-
 		if (caster == target || !target->isImmune(condition->getType())) {
 			Condition* conditionCopy = condition->clone();
 			if (caster) {
@@ -853,19 +823,11 @@ void Combat::doCombatHealth(Creature* caster, Creature* target, CombatDamage& da
 
 	if(caster && caster->getPlayer()){
 		// Critical damage
-		uint16_t chance = caster->getPlayer()->getSkillLevel(SKILL_CRITICAL_HIT_CHANCE);
-		// Charm low blow rune)
-		if (target && target->getMonster()) {
-			uint16_t playerCharmRaceid = caster->getPlayer()->parseRacebyCharm(CHARM_LOW, false, 0);
-			if (playerCharmRaceid != 0) {
-				MonsterType* mType = g_monsters.getMonsterType(target->getName());
-				if (mType && playerCharmRaceid == mType->info.raceid) {
-					IOBestiary g_bestiary;
-					Charm* charm = g_bestiary.getBestiaryCharm(CHARM_LOW);
-					if (charm) {
-						chance += charm->percent;
-					}
-				}
+			uint16_t chance = caster->getPlayer()->getSkillLevel(SKILL_CRITICAL_HIT_CHANCE);
+			if (chance != 0 && uniform_random(1, 100) <= chance) {
+				damage.critical = true;
+				damage.primary.value += (damage.primary.value * caster->getPlayer()->getSkillLevel(SKILL_CRITICAL_HIT_DAMAGE ))/100;
+				damage.secondary.value += (damage.secondary.value * caster->getPlayer()->getSkillLevel(SKILL_CRITICAL_HIT_DAMAGE ))/100;
 			}
 		}
 		if (damage.primary.type != COMBAT_HEALING && chance != 0 && uniform_random(1, 100) <= chance) {
