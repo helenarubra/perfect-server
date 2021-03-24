@@ -4379,6 +4379,7 @@ void ProtocolGame::AddItem(NetworkMessage& msg, const Item* item)
     	}
     	else
       		msg.addByte(0x00);
+		}
 }
 
 void ProtocolGame::AddWorldLight(NetworkMessage& msg, LightInfo lightInfo)
