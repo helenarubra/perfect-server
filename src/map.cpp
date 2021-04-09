@@ -344,7 +344,7 @@ void Map::getSpectatorsInternal(SpectatorHashSet& spectators, const Position& ce
 						if (static_cast<uint32_t>(static_cast<int32_t>(cpos.x - offsetZ) - min_x) <= width && static_cast<uint32_t>(static_cast<int32_t>(cpos.y - offsetZ) - min_y) <= height) {
 							spectators.insert(creature);
 						}
-
+                    }
 				}
 				leafE = leafE->leafE;
 			} else {
