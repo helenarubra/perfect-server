@@ -462,16 +462,16 @@ void AccessList::parseList(const std::string& listToParse)
 
 		std::string::size_type at_pos = line.find("@");
 		if (at_pos != std::string::npos) {
-			if (at_pos == 0) {
-				addGuild(line.substr(1));
-			} else {
-				addGuildRank(line.substr(0, at_pos - 1), line.substr(at_pos + 1));
-			}
-		} else if (line.find("!") != std::string::npos || line.find("*") != std::string::npos || line.find("?") != std::string::npos) {
-			addExpression(line);
-		} else {
-			addPlayer(line);
-		}
+            if (at_pos == 0) {
+                addGuild(line.substr(1));
+            } else {
+                addGuildRank(line.substr(0, at_pos - 1), line.substr(at_pos + 1));
+            }
+        } else if (line.find("!") != std::string::npos || line.find("*") != std::string::npos || line.find("?") != std::string::npos) {
+        //    addExpression(line); temporary solution
+        } else {
+            addPlayer(line);
+        }
 	}
 }
 
