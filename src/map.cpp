@@ -2,7 +2,7 @@
  * @file map.cpp
  * 
  * The Forgotten Server - a free and open-source MMORPG server emulator
- * Copyright (C) 2020 Mark Samman <mark.samman@gmail.com>
+ * Copyright (C) 2021 Mark Samman <mark.samman@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -83,7 +83,7 @@ Tile* Map::getTile(uint16_t x, uint16_t y, uint8_t z) const
 		return nullptr;
 	}
 
-	const QTreeLeafNode* leaf = QTreeNode::getLeafStatic<const QTreeLeafNode*, const QTreeNode*>(&root, x, y);
+	const QTreeLeafNode* leaf = root.getLeaf(x, y);
 	if (!leaf) {
 		return nullptr;
 	}
@@ -565,7 +565,7 @@ const Tile* Map::canWalkTo(const Creature& creature, const Position& pos) const
 	return tile;
 }
 
-bool Map::getPathMatching(const Creature& creature, std::forward_list<Direction>& dirList, const FrozenPathingConditionCall& pathCondition, const FindPathParams& fpp) const
+bool Map::getPathMatching(const Creature& creature, Position targetPos, std::forward_list<Direction>& dirList, const FrozenPathingConditionCall& pathCondition, const FindPathParams& fpp) const
 {
 	Position pos = creature.getPosition();
 	Position endPos;
@@ -686,7 +686,7 @@ bool Map::getPathMatching(const Creature& creature, std::forward_list<Direction>
 				nodes.openNode(neighborNode);
 			} else {
 				//Does not exist in the open/closed list, create a new node
-				neighborNode = nodes.createOpenNode(n, pos.x, pos.y, newf);
+				neighborNode = nodes.createOpenNode(n, pos.x, pos.y, newf, ((std::abs(targetPos.x - pos.x) + std::abs(targetPos.y - pos.y)) * 10));
 				if (!neighborNode) {
 					if (found) {
 						break;

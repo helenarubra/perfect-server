@@ -2,7 +2,7 @@
  * @file luascript.cpp
  * 
  * The Forgotten Server - a free and open-source MMORPG server emulator
- * Copyright (C) 2020 Mark Samman <mark.samman@gmail.com>
+ * Copyright (C) 2021 Mark Samman <mark.samman@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1600,6 +1600,8 @@ void LuaScriptInterface::registerFunctions()
 	registerEnum(ITEM_PLATINUM_COIN)
 	registerEnum(ITEM_CRYSTAL_COIN)
 	registerEnum(ITEM_GOLD_INGOT)
+	registerEnum(ITEM_BITCOIN)
+	
 	registerEnum(ITEM_REWARD_CHEST)
 	registerEnum(ITEM_REWARD_CONTAINER)
 	registerEnum(ITEM_AMULETOFLOSS)

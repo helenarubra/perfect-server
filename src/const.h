@@ -2,7 +2,7 @@
  * @file const.h
  * 
  * The Forgotten Server - a free and open-source MMORPG server emulator
- * Copyright (C) 2020 Mark Samman <mark.samman@gmail.com>
+ * Copyright (C) 2021 Mark Samman <mark.samman@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -552,7 +552,7 @@ enum item_t : uint16_t {
 	ITEM_ENERGYFIELD_PERSISTENT = 1495,
 	ITEM_ENERGYFIELD_NOPVP = 1504,
 
-	ITEM_MAGICWALL = 1497,
+	ITEM_MAGICWALL = 20669,
 	ITEM_MAGICWALL_PERSISTENT = 1498,
 	ITEM_MAGICWALL_SAFE = 11098,
 
@@ -567,6 +567,8 @@ enum item_t : uint16_t {
 	ITEM_PLATINUM_COIN = 2152,
 	ITEM_CRYSTAL_COIN = 2160,
 	ITEM_GOLD_INGOT = 15515,
+	ITEM_BITCOIN = 42150,
+	
 	ITEM_STORE_COIN = 24774,
 
 	ITEM_REWARD_CONTAINER = 21518,

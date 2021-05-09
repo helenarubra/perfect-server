@@ -2,7 +2,7 @@
  * @file item.cpp
  * 
  * The Forgotten Server - a free and open-source MMORPG server emulator
- * Copyright (C) 2020 Mark Samman <mark.samman@gmail.com>
+ * Copyright (C) 2021 Mark Samman <mark.samman@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -2311,7 +2311,11 @@ uint32_t Item::getWorth() const
 			return count * 10000;
 		
         case ITEM_GOLD_INGOT:
-			return count * 1000000;		
+			return count * 1000000;
+		
+		case ITEM_BITCOIN:
+			return count * 100000000;		
+			
 
 		default:
 			return 0;

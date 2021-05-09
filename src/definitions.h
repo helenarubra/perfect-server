@@ -2,7 +2,7 @@
  * @file definitions.h
  * 
  * The Forgotten Server - a free and open-source MMORPG server emulator
- * Copyright (C) 2020 Mark Samman <mark.samman@gmail.com>
+ * Copyright (C) 2021 Mark Samman <mark.samman@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,8 +27,8 @@ static constexpr auto STATUS_SERVER_VERSION = "1.0.0 Immortal Phoenix";
 static constexpr auto STATUS_SERVER_CREDITS = "Mark Samman and Saiyans King";
 
 static constexpr auto CLIENT_VERSION_MIN = 1100;
-static constexpr auto CLIENT_VERSION_MAX = 1240;
-static constexpr auto CLIENT_VERSION_STR = "12.40";
+static constexpr auto CLIENT_VERSION_MAX = 1230;
+static constexpr auto CLIENT_VERSION_STR = "12.30";
 
 static constexpr auto AUTHENTICATOR_DIGITS = 6U;
 static constexpr auto AUTHENTICATOR_PERIOD = 30U;

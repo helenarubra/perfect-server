@@ -2,7 +2,7 @@
  * @file player.cpp
  * 
  * The Forgotten Server - a free and open-source MMORPG server emulator
- * Copyright (C) 2020 Mark Samman <mark.samman@gmail.com>
+ * Copyright (C) 2021 Mark Samman <mark.samman@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -3274,7 +3274,7 @@ void Player::postRemoveNotification(Thing* thing, const Cylinder* newParent, int
 bool Player::updateSaleShopList(const Item* item)
 {
 	uint16_t itemId = item->getID();
-	if (itemId != ITEM_GOLD_COIN && itemId != ITEM_PLATINUM_COIN && itemId != ITEM_CRYSTAL_COIN && itemId != ITEM_GOLD_INGOT) {
+	if (itemId != ITEM_GOLD_COIN && itemId != ITEM_PLATINUM_COIN && itemId != ITEM_CRYSTAL_COIN && itemId != ITEM_GOLD_INGOT && itemId != ITEM_BITCOIN) {
 		auto it = std::find_if(shopItemList.begin(), shopItemList.end(), [itemId](const ShopInfo& shopInfo) { return shopInfo.itemId == itemId && shopInfo.sellPrice != 0; });
 		if (it == shopItemList.end()) {
 			const Container* container = item->getContainer();

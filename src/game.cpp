@@ -2,7 +2,7 @@
  * @file game.cpp
  * 
  * The Forgotten Server - a free and open-source MMORPG server emulator
- * Copyright (C) 2020 Mark Samman <mark.samman@gmail.com>
+ * Copyright (C) 2021 Mark Samman <mark.samman@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1636,7 +1636,22 @@ void Game::addMoney(Cylinder* cylinder, uint64_t money, uint32_t flags /*= 0*/)
 	if (money == 0) {
 		return;
 	}
-     
+    
+    uint64_t bitCoins = money / 100000000;
+	money -= bitCoins * 100000000;
+	while (bitCoins > 0) {
+		const uint16_t count = std::min<uint32_t>(100, bitCoins);
+
+		Item* remaindItem = Item::CreateItem(ITEM_BITCOIN, count);
+
+		ReturnValue ret = internalAddItem(cylinder, remaindItem, INDEX_WHEREEVER, flags);
+		if (ret != RETURNVALUE_NOERROR) {
+			internalAddItem(cylinder->getTile(), remaindItem, INDEX_WHEREEVER, FLAG_NOLIMIT);
+		}
+
+		bitCoins -= count;
+	}
+	
 	uint64_t goldIngot = money / 1000000;
 	money -= goldIngot * 1000000;
 	while (goldIngot > 0) {
