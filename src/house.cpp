@@ -247,8 +247,8 @@ bool House::transferToDepot(Player* player) const
 				
 				if (item->isWrapable()) {
 					std::string itemName = item->getName();
-					uint16_t itemID = item->getID();
-					uint16_t newWrapId = Item::items[item->getID()].wrapableTo;
+					uint32_t itemID = item->getID();
+					uint32_t newWrapId = Item::items[item->getID()].wrapableTo;
 					Item* newItem = g_game.transformItem(item, newWrapId);
 					newItem->setIntAttr(ITEM_ATTRIBUTE_ACTIONID, itemID);
 					std::ostringstream ss;
