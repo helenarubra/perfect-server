@@ -22,6 +22,7 @@
 #ifndef OT_SRC_PROTOCOL_H_
 #define OT_SRC_PROTOCOL_H_
 
+#include <zlib.h>
 #include "connection.h"
 #include "xtea.h"
 
@@ -29,7 +30,7 @@ class Protocol : public std::enable_shared_from_this<Protocol>
 {
 	public:
 		explicit Protocol(Connection_ptr initConnection) : connection(initConnection) {}
-		virtual ~Protocol() = default;
+		virtual ~Protocol();
 
 		// non-copyable
 		Protocol(const Protocol&) = delete;
@@ -89,11 +90,14 @@ class Protocol : public std::enable_shared_from_this<Protocol>
 
 		void XTEA_encrypt(OutputMessage& msg) const;
 		bool XTEA_decrypt(NetworkMessage& msg) const;
+		void compress(OutputMessage& msg) const;
+		
 		static bool RSA_decrypt(NetworkMessage& msg);
 
 		void setRawMessages(bool value) {
 			rawMessages = value;
 		}
+		void enableCompression();
 
 		virtual void release() {}
 		friend class Connection;
@@ -107,6 +111,8 @@ class Protocol : public std::enable_shared_from_this<Protocol>
 		bool checksumEnabled = true;
 		bool compactCrypt = false;
 		bool rawMessages = false;
+		bool compression = false;
+		mutable z_stream zstream = {0};
 };
 
 #endif

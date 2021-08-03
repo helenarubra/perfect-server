@@ -22,10 +22,15 @@
 #ifndef OT_SRC_LUASCRIPT_H_
 #define OT_SRC_LUASCRIPT_H_
 
-#if __has_include("luajit/lua.hpp")
-	#include <luajit/lua.hpp>
+#if defined(_MSC_VER)
+extern "C"
+{
+	#include <luajit/lua.h>
+	#include <luajit/lualib.h>
+	#include <luajit/lauxlib.h>
+}
 #else
-	#include <lua.hpp>
+#include <lua.hpp>
 #endif
 
 #if LUA_VERSION_NUM >= 502

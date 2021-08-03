@@ -55,6 +55,7 @@ class ConfigManager
 			SERVER_SAVE_CLEAN_MAP,
 			SERVER_SAVE_CLOSE,
 			SERVER_SAVE_SHUTDOWN,
+			PACKET_COMPRESSION,
 
 			LAST_BOOLEAN_CONFIG /* this must be the last one */
 		};

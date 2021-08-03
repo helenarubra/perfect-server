@@ -1391,6 +1391,29 @@ class Player final : public Creature, public Cylinder
 		void receivePing() {
 			lastPong = OTSYS_TIME();
 		}
+		
+		void setFPS(uint16_t value)
+		{
+			fps = value;
+		}
+		void setLocalPing(uint16_t value)
+		{
+			localPing = value;
+		}
+		uint16_t getFPS() const
+		{
+			return fps;
+		}
+		uint16_t getLocalPing() const
+		{
+			return localPing;
+		}
+		uint16_t getOTCv8Version() const
+		{
+			if (client)
+				return client->otclientV8;
+			return 0;
+		}
 
 		void onThink(uint32_t interval) final;
 
@@ -1691,6 +1714,8 @@ class Player final : public Creature, public Cylinder
 		uint16_t staminaMinutes = 2520;
 		std::vector<uint8_t> blessings = { 0, 0, 0, 0, 0, 0, 0, 0 };
 		uint16_t maxWriteLen = 0;
+		uint16_t localPing = 0;
+		uint16_t fps = 0;
 		uint16_t baseXpGain = 100;
 		uint16_t voucherXpBoost = 0;
 		uint16_t grindingXpBoost = 0;

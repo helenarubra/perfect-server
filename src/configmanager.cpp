@@ -21,8 +21,13 @@
 
 #include "otpch.h"
 
-#if __has_include("luajit/lua.hpp")
-#include <luajit/lua.hpp>
+#if defined(_MSC_VER)
+extern "C"
+{
+#include <luajit/lua.h>
+#include <luajit/lualib.h>
+#include <luajit/lauxlib.h>
+}
 #else
 #include <lua.hpp>
 #endif
@@ -168,7 +173,8 @@ bool ConfigManager::load()
 	boolean[SERVER_SAVE_CLEAN_MAP] = getGlobalBoolean(L, "serverSaveCleanMap", false);
 	boolean[SERVER_SAVE_CLOSE] = getGlobalBoolean(L, "serverSaveClose", false);
 	boolean[SERVER_SAVE_SHUTDOWN] = getGlobalBoolean(L, "serverSaveShutdown", true);
-
+    boolean[PACKET_COMPRESSION] = getGlobalBoolean(L, "packetCompression", true);
+	
 	string[DEFAULT_PRIORITY] = getGlobalString(L, "defaultPriority", "high");
 	string[SERVER_NAME] = getGlobalString(L, "serverName", "");
 	string[OWNER_NAME] = getGlobalString(L, "ownerName", "");

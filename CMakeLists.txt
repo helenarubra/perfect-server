@@ -73,6 +73,7 @@ find_package(LTO REQUIRED)
 find_package(CXX11 REQUIRED)
 find_package(Crypto++ REQUIRED)
 find_package(PugiXML REQUIRED)
+find_package(ZLIB REQUIRED)
 find_package(MySQL REQUIRED)
 find_package(Threads REQUIRED)
 find_package(Spdlog REQUIRED)
@@ -147,7 +148,7 @@ endif (BUILD_DOC)
 
 include_directories(SYSTEM ${MYSQL_INCLUDE_DIR} ${LUA_INCLUDE_DIR} ${Boost_INCLUDE_DIRS} ${PUGIXML_INCLUDE_DIR} ${Crypto++_INCLUDE_DIR} ${Spdlog_INCLUDE_DIR})
 
-target_link_libraries(tfs ${MYSQL_CLIENT_LIBS} ${LUA_LIBRARIES} ${Boost_LIBRARIES} ${Boost_FILESYSTEM_LIBRARY} ${PUGIXML_LIBRARIES} ${Crypto++_LIBRARIES} ${Spdlog_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(tfs ${MYSQL_CLIENT_LIBS} ${LUA_LIBRARIES} ${Boost_LIBRARIES} ${Boost_FILESYSTEM_LIBRARY} ${PUGIXML_LIBRARIES} ${ZLIB_LIBRARY} ${Crypto++_LIBRARIES} ${Spdlog_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 set_target_properties(tfs PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "src/otpch.h")
 set_target_properties(tfs PROPERTIES COTIRE_ADD_UNITY_BUILD FALSE)
