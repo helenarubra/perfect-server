@@ -11856,7 +11856,7 @@ int LuaScriptInterface::luaVocationGetRequiredManaSpent(lua_State* L)
 	// vocation:getRequiredManaSpent(magicLevel)
 	Vocation* vocation = getUserdata<Vocation>(L, 1);
 	if (vocation) {
-		uint32_t magicLevel = getNumber<uint32_t>(L, 2);
+		uint64_t magicLevel = getNumber<uint64_t>(L, 2);
 		lua_pushnumber(L, vocation->getReqMana(magicLevel));
 	} else {
 		lua_pushnil(L);
@@ -15480,7 +15480,7 @@ int LuaScriptInterface::luaSpellMagicLevel(lua_State* L)
 		if (lua_gettop(L) == 1) {
 			lua_pushnumber(L, spell->getMagicLevel());
 		} else {
-			spell->setMagicLevel(getNumber<uint32_t>(L, 2));
+			spell->setMagicLevel(getNumber<uint64_t>(L, 2));
 			pushBoolean(L, true);
 		}
 	} else {

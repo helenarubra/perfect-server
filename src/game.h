@@ -497,7 +497,7 @@ class Game
 		uint64_t getSkillStage(uint32_t level);
 
 		bool loadMagicLevelStages();
-		uint64_t getMagicLevelStage(uint32_t level);
+		uint64_t getMagicLevelStage(uint64_t level);
 
 		bool loadItemsPrice();
 

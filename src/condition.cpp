@@ -434,7 +434,7 @@ void ConditionAttributes::updatePercentStats(Player* player)
 				break;
 
 			case STAT_MAGICPOINTS:
-				stats[i] = static_cast<int32_t>(player->getBaseMagicLevel() * ((statsPercent[i] - 100) / 100.f));
+				stats[i] = static_cast<int64_t>(player->getBaseMagicLevel() * ((statsPercent[i] - 100) / 100.f));
 				break;
 
 			case STAT_CAPACITY:

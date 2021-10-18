@@ -5625,7 +5625,7 @@ bool Game::loadMagicLevelStages()
 
 				pugi::xml_attribute maxLevelAttribute = stage1.attribute("maxmagic");
 				if (maxLevelAttribute) {
-					maxLevel = pugi::cast<uint32_t>(maxLevelAttribute.value());
+					maxLevel = pugi::cast<uint64_t>(maxLevelAttribute.value());
 				}
 				else {
 					maxLevel = 0;
@@ -5655,7 +5655,7 @@ bool Game::loadMagicLevelStages()
 	return true;
 }
 
-uint64_t Game::getMagicLevelStage(uint32_t level)
+uint64_t Game::getMagicLevelStage(uint64_t level)
 {
 	if (!stagesMlEnabled) {
 		return g_config.getNumber(ConfigManager::RATE_MAGIC);

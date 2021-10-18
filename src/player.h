@@ -443,7 +443,7 @@ class Player final : public Creature, public Cylinder
 			return levelPercent;
 		}
 		uint32_t getMagicLevel() const {
-			return std::max<int32_t>(0, magLevel + varStats[STAT_MAGICPOINTS]);
+			return std::max<int64_t>(0, magLevel + varStats[STAT_MAGICPOINTS]);
 		}
 		uint32_t getBaseMagicLevel() const {
 			return magLevel;
