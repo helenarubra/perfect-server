@@ -23,7 +23,7 @@
 #define OT_SRC_DEFINITIONS_H_
 
 static constexpr auto STATUS_SERVER_NAME = "The Forgotten Server";
-static constexpr auto STATUS_SERVER_VERSION = "1.3";
+static constexpr auto STATUS_SERVER_VERSION = "1.4";
 static constexpr auto STATUS_SERVER_CREDITS = "Mark Samman";
 
 static constexpr auto CLIENT_VERSION_MIN = 1100;
