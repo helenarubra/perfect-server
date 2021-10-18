@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 
 	if (serviceManager.is_running()) {
 
-		std::cout << ">> " << g_config.getString(ConfigManager::SERVER_NAME) << " Server Online!" << std::endl << std::endl;
+		std::cout << ">> " << g_config.getString(ConfigManager::SERVER_NAME) << " - Perfect CoreEngine - Online!" << std::endl << std::endl;
 		serviceManager.run();
 	} else {
 		std::cout << ">> No services running. The server is NOT online." << std::endl;
@@ -122,7 +122,7 @@ void mainLoader(int argc, char* argv[], ServiceManager* services)
 	std::cout << std::endl;
 
 	std::cout << "Special Credits for: " << STATUS_SERVER_CREDITS << "." << std::endl;
-	std::cout << "Link of repository: https://github.com/otland/forgottenserver" << std::endl;
+	std::cout << "Link of repository: https://github.com/Johncorex" << std::endl;
 	std::cout << std::endl;
 
 	// TODO: dirty for now; Use stdarg;

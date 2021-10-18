@@ -316,7 +316,7 @@ bool Items::loadFromXml()
 			if (idAttribute) {
 				std::cout << "[Warning - Items::loadFromXml] No item id (" << idAttribute.value() << ") found" << std::endl;
 			} else {
-				std::cout << "[Warning - Items::loadFromXml] No item id found" << std::endl;
+				///std::cout << "[Warning - Items::loadFromXml] No item id found" << std::endl;
 			}
 			continue;
 		}
